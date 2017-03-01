@@ -56,7 +56,7 @@ class ExplorerTest < ActionDispatch::IntegrationTest
   end
 
   def test_user_creation
-    post '/api/users/create',
+    post '/api/users',
       params: {
         username: Faker::Internet.user_name,
         email: Faker::Internet.safe_email,
@@ -64,12 +64,13 @@ class ExplorerTest < ActionDispatch::IntegrationTest
       }
     assert response.ok?
     json = JSON.parse(response.body)
+    refute json["user"]["username"].blank?
     refute json["user"]["email"].blank?
     refute json["user"]["api_token"].blank?
   end
 
   def test_user_notes
-    user = build(:user_with_notes)
+    user = FactoryGirl.create(:user, :with_notes)
     get "/api/notes",
       params: {
         api_token: user.api_token
@@ -77,7 +78,7 @@ class ExplorerTest < ActionDispatch::IntegrationTest
     assert response.ok?
     json = JSON.parse(response.body)
     assert_equal user.notes.count, json["notes"].length
-    assert_equal example_note(user.notes.last), json["notes"].last
+    assert json["notes"].detect{|note| note == example_note(user.notes.last)}
   end
 
 
