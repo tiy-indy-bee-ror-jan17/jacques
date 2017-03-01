@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   resources :notes
   resources :users
 
-
+  
   get '/api/notes'  => 'notes#index'
   post '/api/users'   => 'users#create'
   post '/api/notes' => 'notes#create'
