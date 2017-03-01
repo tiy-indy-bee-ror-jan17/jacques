@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class TaggingTest < ActiveSupport::TestCase
+class TagControllerTest < ActionDispatch::IntegrationTest
   # test "the truth" do
   #   assert true
   # end
