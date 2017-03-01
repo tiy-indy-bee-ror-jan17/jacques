@@ -21,65 +21,65 @@ class ExplorerTest < ActionDispatch::IntegrationTest
     assert json['notes'].first == example_note(Note.first),
       json['notes'].first.inspect + "\n\n" + example_note(Note.first).inspect
   end
-
-  def test_tag_lists_are_correct
-    note = Note.first
-    get "/api/notes/tag/#{note.tags.first.name}"
-    json = JSON.parse(response.body)
-    assert_equal note.tags.first.name, json['tag']['name']
-    assert_equal example_note(Note.first), json['tag']['notes'].first
-  end
-
-  def test_tag_create_is_correct
-    post '/api/notes',
-      params: {
-        title:  "My created post",
-        body:   "My created body",
-        tags:   "api, machine, first"
-      }
-    json = JSON.parse(response.body)
-    assert_equal "My created post", json['note']['title']
-    assert_equal 11, Note.count
-    assert_equal 3, json['note']['tags'].length
-  end
-
-  def test_improper_note
-    post '/api/notes',
-      params: {
-        title:  "",
-        body:   "My created body",
-        tags:   "api, machine, first"
-      }
-    assert_equal 400, status
-    json = JSON.parse(response.body)
-    assert_equal "Title can't be blank", json['errors'].first['error']
-  end
-
-  def test_user_creation
-    post '/api/users',
-      params: {
-        username: Faker::Internet.user_name,
-        email: Faker::Internet.safe_email,
-        password: Faker::Internet.password
-      }
-    assert response.ok?
-    json = JSON.parse(response.body)
-    refute json["user"]["username"].blank?
-    refute json["user"]["email"].blank?
-    refute json["user"]["api_token"].blank?
-  end
-
-  def test_user_notes
-    user = FactoryGirl.create(:user, :with_notes)
-    get "/api/notes",
-      params: {
-        api_token: user.api_token
-      }
-    assert response.ok?
-    json = JSON.parse(response.body)
-    assert_equal user.notes.count, json["notes"].length
-    assert json["notes"].detect{|note| note == example_note(user.notes.last)}
-  end
+  #
+  # def test_tag_lists_are_correct
+  #   note = Note.first
+  #   get "/api/notes/tag/#{note.tags.first.name}"
+  #   json = JSON.parse(response.body)
+  #   assert_equal note.tags.first.name, json['tag']['name']
+  #   assert_equal example_note(Note.first), json['tag']['notes'].first
+  # end
+  #
+  # def test_tag_create_is_correct
+  #   post '/api/notes',
+  #     params: {
+  #       title:  "My created post",
+  #       body:   "My created body",
+  #       tags:   "api, machine, first"
+  #     }
+  #   json = JSON.parse(response.body)
+  #   assert_equal "My created post", json['note']['title']
+  #   assert_equal 11, Note.count
+  #   assert_equal 3, json['note']['tags'].length
+  # end
+  #
+  # def test_improper_note
+  #   post '/api/notes',
+  #     params: {
+  #       title:  "",
+  #       body:   "My created body",
+  #       tags:   "api, machine, first"
+  #     }
+  #   assert_equal 400, status
+  #   json = JSON.parse(response.body)
+  #   assert_equal "Title can't be blank", json['errors'].first['error']
+  # end
+  #
+  # def test_user_creation
+  #   post '/api/users',
+  #     params: {
+  #       username: Faker::Internet.user_name,
+  #       email: Faker::Internet.safe_email,
+  #       password: Faker::Internet.password
+  #     }
+  #   assert response.ok?
+  #   json = JSON.parse(response.body)
+  #   refute json["user"]["username"].blank?
+  #   refute json["user"]["email"].blank?
+  #   refute json["user"]["api_token"].blank?
+  # end
+  #
+  # def test_user_notes
+  #   user = FactoryGirl.create(:user, :with_notes)
+  #   get "/api/notes",
+  #     params: {
+  #       api_token: user.api_token
+  #     }
+  #   assert response.ok?
+  #   json = JSON.parse(response.body)
+  #   assert_equal user.notes.count, json["notes"].length
+  #   assert json["notes"].detect{|note| note == example_note(user.notes.last)}
+  # end
 
 
   private
