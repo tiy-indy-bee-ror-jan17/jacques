@@ -14,7 +14,7 @@ class NoteController < ApplicationController
     if @notes.save
       render json: @notes
     else
-      render json: @notes.errors.full_messages, status: 400
+      render json: {errors: @notes.errors.full_messages.collect { |err| {error: err } } }, status: 400
     end
   end
 
