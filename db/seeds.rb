@@ -5,3 +5,23 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+10.times do
+  user = FactoryGirl.create(:user)
+    rand(1..10).times do
+      user.notes.create!(
+        title: Faker::Book.title,
+        body: Faker::Lorem.sentences
+        )
+    end
+end
+
+users = User.all
+users.each do |user|
+  rand(1..3).times.each do
+    tags = FactoryGirl.create(:tag)
+    user.notes.each do |note|
+      note.tags << tags
+    end
+  end
+end
