@@ -1,3 +1,4 @@
 class TagSerializer < ActiveModel::Serializer
-  attributes :id, :name
+  attributes :name
+  has_many :notes
 end

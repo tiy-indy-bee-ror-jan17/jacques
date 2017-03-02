@@ -2,7 +2,7 @@ class ApplicationController < ActionController::API
   private
 
   def current_user
-    @current_user ||= User.find_by(auth_token: params[:auth_token]) if params[:auth_token]
+    @current_user ||= User.find_by(api_token: params[:api_token]) if params[:api_token]
   end
 
   def require_user
