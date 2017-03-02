@@ -34,4 +34,8 @@ class NotesController < ApplicationController
     render json: @tag, include: '**'
   end
 
+  def welcome
+    render text: "Welcome to Jacquesopolis"
+  end
+
 end

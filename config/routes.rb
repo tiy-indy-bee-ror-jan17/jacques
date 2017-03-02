@@ -4,5 +4,6 @@ Rails.application.routes.draw do
   post '/api/notes' => 'notes#create'
   get '/api/notes/tag/:id' => 'notes#by_tag'
   post '/api/users' => 'users#create'
+  get '/' => 'notes#welcome'
 
 end
