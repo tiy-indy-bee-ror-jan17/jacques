@@ -1,9 +1,14 @@
 class NoteController < ApplicationController
 
   def index
-    @notes = Note.all
+    if current_user
+      @notes = current_user.notes
+    else
+      @notes = Note.all
+    end
     render json: @notes
   end
+
 
   def create
     @notes = Note.new(note_params)
