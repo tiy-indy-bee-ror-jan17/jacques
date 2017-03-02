@@ -3,6 +3,6 @@ class User < ApplicationRecord
   has_secure_password
   has_secure_token :api_token
 
-  has many :notes
+  has_many :notes
 
 end
