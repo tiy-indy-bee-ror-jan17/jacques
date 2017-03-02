@@ -81,7 +81,6 @@ class ExplorerTest < ActionDispatch::IntegrationTest
     assert json["notes"].detect{|note| note == example_note(user.notes.last)}
   end
 
-
   private
 
   def example_note(note)
