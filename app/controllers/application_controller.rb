@@ -1,6 +1,9 @@
 class ApplicationController < ActionController::API
 
   def index
+    # I know this is not a future-friendly way to do this. Wouldn't do this in production.
+    # But I am comfortable with the demonstrated way to do this. So I turned to this to
+    # exercise monkey patching w/ `super`
     if params[:api_token]
       @live_user ||= User.find_by(api_token: params[:api_token])
     end

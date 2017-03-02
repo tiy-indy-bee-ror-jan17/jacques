@@ -26,7 +26,7 @@ class NotesController < ApplicationController
                              :user)
     tags = []
     pre_note[:tags].split(/\s*,\s*/).each do |name|
-      tags << Tag.find_or_create_by(name: name)
+      tags << Tag.find_or_initialize_by(name: name)
     end
     pre_note[:tags] = tags
     return pre_note
