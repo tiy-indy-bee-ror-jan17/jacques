@@ -5,3 +5,10 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+def setup
+  3.times do
+    FactoryGirl.create(:note_with_tags)
+  end
+end
+
+setup
