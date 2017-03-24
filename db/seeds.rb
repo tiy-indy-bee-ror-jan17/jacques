@@ -13,7 +13,7 @@
   user = User.create!(
     username: username,
     email: Faker::Internet.safe_email,
-    password: Faker::Internet.password,
+    password: Faker::Internet.password
   )
 
   5.times do
