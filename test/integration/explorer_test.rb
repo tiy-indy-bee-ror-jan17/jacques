@@ -42,7 +42,7 @@ class ExplorerTest < ActionDispatch::IntegrationTest
     assert_equal 11, Note.count
     assert_equal 3, json['note']['tags'].length
   end
-
+  #
   def test_improper_note
     post '/api/notes',
       params: {
@@ -68,7 +68,7 @@ class ExplorerTest < ActionDispatch::IntegrationTest
     refute json["user"]["email"].blank?
     refute json["user"]["api_token"].blank?
   end
-
+  #
   def test_user_notes
     user = FactoryGirl.create(:user, :with_notes)
     get "/api/notes",
