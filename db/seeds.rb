@@ -23,10 +23,9 @@
     )
 
     2.times do
-      note.tags.find_or_create by! (
+      note.tags.find_or_create_by! (
       name: Faker::Friends.character
       )
     end
   end
-
 end
