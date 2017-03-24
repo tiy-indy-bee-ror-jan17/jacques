@@ -21,6 +21,12 @@
       title: Faker::Beer.name,
       body: Faker::Friends.quote
     )
+
+    2.times do
+      note.tags.find_or_create by! (
+      tag: Faker::Friends.character
+      )
+    end
   end
 
 end
