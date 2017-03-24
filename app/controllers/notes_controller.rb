@@ -11,6 +11,7 @@ class NotesController < ApplicationController
 
   def create
     @note = Note.new(note_params)
+    #Typically move this bottom section to a model to keep the controller light
     params[:tags].split(',').each do |name|
       tag = Tag.find_or_create_by(name: name)
       @note.tags << tag
