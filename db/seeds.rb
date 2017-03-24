@@ -18,7 +18,7 @@
     body: Faker::Company.catch_phrase
     )
     3.times do
-      note.tags.find_or_create_by!(
+      note.tags << Tag.find_or_create_by!(
       name: Faker::Commerce.color
       )
     end
