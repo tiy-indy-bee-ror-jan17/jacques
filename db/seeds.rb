@@ -25,14 +25,8 @@ end
       created_at: rand_time(2.years.ago).to_formatted_s(:long_ordinal)
     )
     5.times do
-      tag = Tag.create(
-        name: Faker::Book.genre,
-        created_at: rand_time(2.years.ago).to_formatted_s(:long_ordinal)
-      )
-      Tagging.create(
-        tag_id: tag.id,
-        note_id: note.id,
-        created_at: rand_time(2.years.ago).to_formatted_s(:long_ordinal)
+      note.tags << Tag.find_or_create_by(
+        name: Faker::Book.genre
       )
     end
   end
