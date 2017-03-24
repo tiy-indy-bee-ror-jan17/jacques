@@ -22,7 +22,7 @@ end
       title: Faker::Beer.name,
       body: Faker::ChuckNorris.fact,
       user_id: user.id,
-      created_at: rand_time(2.years.ago).to_formatted_s(:long_ordinal)
+      created_at: rand_time(user.created_at).to_formatted_s(:long_ordinal)
     )
     5.times do
       note.tags << Tag.find_or_create_by(
