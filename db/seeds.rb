@@ -8,7 +8,7 @@
 
 10.times do
   user = FactoryGirl.create(:user)
-    rand(1..10).times do
+    rand(4..10).times do
       user.notes.create!(
         title: Faker::Book.title,
         body: Faker::Lorem.sentences
