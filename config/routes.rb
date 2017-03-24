@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   get "/api/notes/tag/:tag" => 'tags#show'
   post '/api/notes' => 'notes#create'
   post '/api/users' => 'users#create'
+  put '/api/notes/:id' => 'notes#update'
 
 
 end

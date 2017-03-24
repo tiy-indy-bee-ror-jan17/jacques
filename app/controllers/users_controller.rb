@@ -5,7 +5,7 @@ class UsersController < ApplicationController
     if @user.save
       render json: @user, serializer: UserExpandedSerializer
     else
-      render json: @user.errors.full_messages, status: 400
+      render json: {errors: @user.errors.full_messages.map{ |e|{error: e}}}, status: 400
     end
   end
 
