@@ -5,3 +5,22 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+5.times do |x|
+  user = User.create!(
+  username: Faker::Pokemon.name,
+  email: Faker::Internet.safe_email,
+  password: "password"
+  )
+  3.times do
+    note = user.notes.create!(
+    title: Faker::LordOfTheRings.location,
+    body: Faker::Company.catch_phrase
+    )
+    3.times do
+      note.tags.find_or_create_by!(
+      name: Faker::Commerce.color
+      )
+    end
+  end
+end
