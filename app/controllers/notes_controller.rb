@@ -1,11 +1,13 @@
 class NotesController < ApplicationController
 
+  before_action require_user only: [:update]
+
   def index
     @notes = case
     when params[:tag]
       Tag.find_by(name: params[:tag])
-    when params[:api_token]
-      User.find_by(api_token: params[:api_token]).notes
+    when current_user
+      current_user.notes
     else Note.all
     end
     render json: @notes
@@ -20,6 +22,11 @@ class NotesController < ApplicationController
     else
       request_error(@note.errors.full_messages)
     end
+  end
+
+  def update
+    @note = Note.find(params[:id]) if params(:id)
+    @note.user == current_user ? @note.update(note_params) : request_error(["not your note!"])
   end
 
   private
