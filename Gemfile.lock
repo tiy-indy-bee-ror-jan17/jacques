@@ -168,7 +168,7 @@ DEPENDENCIES
   pg (~> 0.18)
   pry-nav
   pry-rails
-  puma
+  puma (~> 3.0)
   rack-cors
   rails (>= 5.0.0, < 5.1)
   shoulda
