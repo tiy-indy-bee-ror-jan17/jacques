@@ -18,7 +18,7 @@
 
   5.times do
     user.notes.create!(
-      title: Faker::Beer.name
+      title: Faker::Beer.name,
       body: Faker::Coffee.notes
     )
   end
