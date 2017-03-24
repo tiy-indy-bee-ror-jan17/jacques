@@ -29,7 +29,7 @@ end
         name: Faker::Book.genre,
         created_at: rand_time(2.years.ago).to_formatted_s(:long_ordinal)
       )
-      Taggings.create(
+      Tagging.create(
         tag_id: tag.id,
         note_id: note.id,
         created_at: rand_time(2.years.ago).to_formatted_s(:long_ordinal)
