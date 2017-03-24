@@ -9,22 +9,18 @@ class NoteController < ApplicationController
     render json: @notes
   end
 
-
   def create
-    @notes = Note.new(note_params)
-    params[:tags].split(",").each do |name|
-      tag = Tag.find_or_initialize_by(name: name)
-      @notes.tags << tag
-    end
-    if @notes.save
-      render json: @notes
-    else
-      render json: {errors: @notes.errors.full_messages.collect { |err| {error: err } } }, status: 400
-    end
+      @note = Note.new(note_params)
+      params[:tags].split(',').each do |name|
+        tag = Tag.find_or_create_by(name: name)
+        @note.tags << tag
+      end
+      if @note.save
+        render json: @note, serializer: NoteSerializer
+      else
+        render json: {errors: @note.errors.full_messages.collect{ |e|{error: e}}}, status: 400
+      end
   end
-
-
-
 
   private
 
