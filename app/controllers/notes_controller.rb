@@ -1,13 +1,11 @@
 class NotesController < ApplicationController
 
   def index
-    # binding.pry
     if current_user
       @notes = current_user.notes
     else
       @notes = Note.all
     end
-    # binding.pry
     render json: @notes
   end
 

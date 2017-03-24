@@ -1,7 +1,7 @@
 class NoteSerializer < ActiveModel::Serializer
   attributes :title, :body, :created_at, :updated_at, :tags, :user
   has_many :tags
-  belongs_to :user
+  has_one :user
 
   def tags
     names = []
