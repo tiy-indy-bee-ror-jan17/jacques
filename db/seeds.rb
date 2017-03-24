@@ -12,7 +12,7 @@ end
 
 10.times do
   user = User.create(
-    username: Faker::Internet.unique.name,
+    username: Faker::Internet.unique.user_name(8..20),
     email: Faker::Internet.unique.safe_email,
     password: "password",
     created_at: rand_time(2.years.ago).to_formatted_s(:long_ordinal)
