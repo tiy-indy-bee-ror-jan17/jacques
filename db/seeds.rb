@@ -17,14 +17,14 @@
   )
 
   5.times do
-    user.notes.create!(
+    note = user.notes.create!(
       title: Faker::Beer.name,
       body: Faker::Friends.quote
     )
 
     2.times do
       note.tags.find_or_create by! (
-      tag: Faker::Friends.character
+      name: Faker::Friends.character
       )
     end
   end
