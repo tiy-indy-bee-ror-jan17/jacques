@@ -19,7 +19,7 @@ end
   )
   5.times do
     note = Note.create(
-      title: Faker::Coffee.blend_name,
+      title: Faker::Beer.name,
       body: Faker::ChuckNorris.fact,
       user_id: user.id,
       created_at: rand_time(2.years.ago).to_formatted_s(:long_ordinal)
