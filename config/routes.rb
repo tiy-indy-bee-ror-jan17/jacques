@@ -10,8 +10,7 @@ Rails.application.routes.draw do
   post '/api/users'           => 'users#create'
   get  '/api/notes/tag/:name' => 'tags#show'
 
-
-  # root                          'posts#index'
+  root to: redirect('https://davegregg.github.io/jacques-frontend/')
   # get  '/users'              => 'users#index'
   # post '/users'              => 'users#create'
   # get  '/posts/:id'          => 'posts#show'
