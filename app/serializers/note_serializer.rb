@@ -6,7 +6,7 @@ class NoteSerializer < ActiveModel::Serializer
   def tags
     names = []
     object.tags.pluck(:name).each do |name|
-      names << {:name => name}
+      names << {name: name}
     end
     return names
   end

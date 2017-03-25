@@ -5,7 +5,7 @@ class SessionsController < ApplicationController
   def create
     @user = User.find_by(username: params[:username])&.authenticate(params[:password])
     if @user
-      session[:user_id] = @user.id
+      session[:api_token] = @user.api_token
         # flash[:success] = "Welcome, #{@user.name}"
       redirect_to 'https://mstashev.github.io/deadbeat-jacques/'
     else
@@ -15,7 +15,7 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    session[:user_id] = nil
+    session[:api_token] = nil
     redirect_to 'https://mstashev.github.io/deadbeat-jacques/'
   end
 end
