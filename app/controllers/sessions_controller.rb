@@ -3,7 +3,7 @@ class SessionsController < ApplicationController
   end
 
   def create
-    @user = User.find_by(username: params[:session][:username])&.authenticate(params[:session][:password])
+    @user = User.find_by(username: params[:username])&.authenticate(params[:password])
     if @user
       session[:user_id] = @user.id
         flash[:success] = "Welcome, #{@user.name}"
