@@ -1,8 +1,8 @@
 source 'https://rubygems.org'
-
+ruby '2.3.3'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '>= 5.0.0.beta3', '< 5.1'
+gem 'rails', '>= 5.0.2'
 # Use postgresql as the database for Active Record
 gem 'pg', '~> 0.18'
 # Use Puma as the app server
@@ -15,6 +15,8 @@ gem 'puma'
  gem 'bcrypt', '~> 3.1.7'
  gem 'active_model_serializers'
  gem 'pry-rails'
+ gem 'rails_12factor'
+ gem 'faker'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
@@ -27,7 +29,6 @@ group :development, :test do
   gem 'byebug'
   gem 'shoulda'
   gem 'factory_girl_rails', '~> 4.0'
-  gem 'faker'
   gem 'database_cleaner'
 end
 
