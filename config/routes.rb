@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
-  #
-  # resources :taggings
-  # resources :tags
+
   # resources :notes
   # resources :users
 
@@ -15,4 +13,5 @@ Rails.application.routes.draw do
     post   '/login'           => 'sessions#create'
     delete '/logout'          => 'sessions#destroy',   as: 'logout'
   end
+  
 end
