@@ -12,6 +12,7 @@ end
 
 10.times do
   user = User.create(
+    name: Faker::Name.name,
     username: Faker::Internet.unique.user_name(8..20),
     email: Faker::Internet.unique.safe_email,
     password: "password",
