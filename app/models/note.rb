@@ -8,6 +8,8 @@ class Note < ApplicationRecord
 
   serialize :body
 
+  default_scope { order(created_at: :desc)}
+
   # def tags=(string)       => allows :tags as a user_param in UsersController
   #   if string.is_a? String
   #     string.split(",").map(&:strip).each do |t|

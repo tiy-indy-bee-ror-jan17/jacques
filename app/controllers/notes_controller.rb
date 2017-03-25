@@ -18,6 +18,7 @@ class NotesController < ApplicationController
         note.tags << new_tag
       end
     end
+    # binding.pry
     if params[:api_token].present?
       user = User.find_by(api_token: params[:api_token])
       note.user = user
@@ -27,6 +28,11 @@ class NotesController < ApplicationController
     else
       render json: { errors: note.errors.full_messages.map { |err_msg| { error: err_msg } } }, status: 400
     end
+  end
+
+  def show
+    note = Note.find(params[:id])
+    render json: note
   end
 
   def update

@@ -16,12 +16,11 @@
     end
 end
 
-users = User.all
-users.each do |user|
+notes = Note.all
+notes.each do |note|
   rand(1..3).times.each do
     tags = FactoryGirl.create(:tag)
-    user.notes.each do |note|
-      note.tags << tags
-    end
+    note.tags << tags
   end
+
 end
