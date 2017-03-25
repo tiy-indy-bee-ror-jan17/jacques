@@ -7,15 +7,15 @@ class SessionsController < ApplicationController
     if @user
       session[:user_id] = @user.id
         # flash[:success] = "Welcome, #{@user.name}"
-      redirect_to :index
+      redirect_to 'https://mstashev.github.io/deadbeat-jacques/'
     else
       # flash[:danger] = "Username or password is incorrect. Please try again."
-      redirect_to :login
+      redirect_to 'https://mstashev.github.io/deadbeat-jacques/'
     end
   end
 
   def destroy
     session[:user_id] = nil
-    redirect_to :root
+    redirect_to 'https://mstashev.github.io/deadbeat-jacques/'
   end
 end
