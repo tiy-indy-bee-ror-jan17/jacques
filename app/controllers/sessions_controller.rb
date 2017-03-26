@@ -5,18 +5,13 @@ class SessionsController < ApplicationController
   def create
     @user = User.find_by(username: params[:username])&.authenticate(params[:password])
     if @user
-      puts "\n\npasssssssssssssssssssssssssssssssssssssssssssssssssssssssssssed\n\n"
-      return @user.api_token
-        # flash[:success] = "Welcome, #{@user.name}"
-      # redirect_to 'https://mstashev.github.io/deadbeat-jacques/'
+      render json: {api_token: @user.api_token}
     else
-      # flash[:danger] = "Username or password is incorrect. Please try again."
-      redirect_to 'https://mstashev.github.io/deadbeat-jacques/'
+      render json: {api_token: nil}
     end
   end
 
   def destroy
-    localstorage[:api_token] = nil
-    redirect_to 'https://mstashev.github.io/deadbeat-jacques/'
+    render json: {api_token: nil}
   end
 end
