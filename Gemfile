@@ -27,7 +27,7 @@ group :development, :test do
   gem 'byebug'
   gem 'shoulda'
   gem 'factory_girl_rails', '~> 4.0'
-  gem 'faker'
+  gem 'faker', github: 'stympy/faker'
   gem 'pry-rails'
   gem 'pry-nav'
   gem 'database_cleaner'

@@ -1,12 +1,19 @@
 GIT
   remote: git://github.com/rails-api/active_model_serializers.git
-  revision: ff27032720956f7c5cd9ef50618606cfebaa7ad9
+  revision: 80e470dcdb8b724990baf3c90d7300884c4395bf
   specs:
-    active_model_serializers (0.10.4)
+    active_model_serializers (0.10.5)
       actionpack (>= 4.1, < 6)
       activemodel (>= 4.1, < 6)
       case_transform (>= 0.2)
       jsonapi-renderer (>= 0.1.1.beta1, < 0.2)
+
+GIT
+  remote: git://github.com/stympy/faker.git
+  revision: b539a80d5442c7a6ec1390c191e0bda519335826
+  specs:
+    faker (1.8.0)
+      i18n (~> 0.5)
 
 GEM
   remote: https://rubygems.org/
@@ -63,8 +70,6 @@ GEM
     factory_girl_rails (4.8.0)
       factory_girl (~> 4.8.0)
       railties (>= 3.0.0)
-    faker (1.7.3)
-      i18n (~> 0.5)
     ffi (1.9.17)
     globalid (0.3.7)
       activesupport (>= 4.1.0)
@@ -163,7 +168,7 @@ DEPENDENCIES
   byebug
   database_cleaner
   factory_girl_rails (~> 4.0)
-  faker
+  faker!
   listen (~> 3.0.5)
   pg (~> 0.18)
   pry-nav

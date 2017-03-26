@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 
     def create
-      user = User.new(params.permit(:username,:email,:password))
+      user = User.new(params.permit(:username, :email, :password))
       if user.save
         render json: user, serializer: UserExpandedSerializer
       else
