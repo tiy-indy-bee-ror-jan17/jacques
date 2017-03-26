@@ -27,7 +27,7 @@ end
     )
     5.times do
       tag_name = Faker::Hacker.verb
-      unless note.tags.include? tag_name
+      unless note.tags.name.include? tag_name
         note.tags << Tag.find_or_create_by(
           name: tag_name
         )
