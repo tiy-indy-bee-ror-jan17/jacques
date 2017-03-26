@@ -12,6 +12,7 @@ class NoteSerializer < ActiveModel::Serializer
       note.user.username = "anonymous"
     else
       @note.user.username
+    end
   end
 
 end
