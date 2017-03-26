@@ -27,7 +27,7 @@ end
     )
     5.times do
       note.tags << Tag.find_or_create_by(
-        name: Faker::Book.genre
+        name: Faker::Hacker.verb
       )
     end
   end
