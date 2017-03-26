@@ -2,9 +2,9 @@ class NoteController < ApplicationController
 
   def index
     if current_user
-      @notes = current_user.notes
+      @notes = current_user.notes.order(created_at: :desc)
     else
-      @notes = Note.all
+      @notes = Note.all.order(created_at: :desc)
     end
       render json: @notes
   end
