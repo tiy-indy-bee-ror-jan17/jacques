@@ -21,8 +21,9 @@
   @note = Note.create!(
     title: random_title_post.sample,
     body: random_title_post.sample,
+    created_at: rand(1..700).days.ago,
     user: @user,
-    tags: 5.times.collect{Tag.find_or_create_by(name: Faker::Hipster.word)}
+    tags: 5.times.collect{Tag.find_or_create_by!(name: Faker::Hipster.word)}
     )
   end
 
