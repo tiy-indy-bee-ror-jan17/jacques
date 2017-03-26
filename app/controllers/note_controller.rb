@@ -2,9 +2,9 @@ class NoteController < ApplicationController
 
   def index
     if current_user
-      @notes = current_user.notes.order(created_at: :desc)
+      @notes = current_user.notes
     else
-      @notes = Note.all.order(created_at: :desc)
+      @notes = Note.all
     end
       render json: @notes
   end
@@ -21,7 +21,7 @@ class NoteController < ApplicationController
 
   def by_tag_name
     @tags = Tag.find_by(name: params[:name])
-    @tags.notes.order(created_at: :desc)
+    @tags.notes
     render json: @tags, include: ['notes.tags', 'notes.user']
   end
 
