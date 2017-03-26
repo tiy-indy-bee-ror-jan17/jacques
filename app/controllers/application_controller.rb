@@ -1,5 +1,11 @@
 class ApplicationController < ActionController::API
 
+  before_action :get_notes
+
+  def get_notes
+    @notes = Note.all.order(created_at: :desc)
+  end
+
     private
 
     def current_user
