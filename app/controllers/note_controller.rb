@@ -20,7 +20,7 @@ class NoteController < ApplicationController
   end
 
   def by_tag_name
-    @tags = Tag.find_by(name: params[:name])
+    @tags = Tag.find_by(name: params[:name]).order(created_at: :desc)
     render json: @tags, include: ['notes.tags', 'notes.user']
   end
 
