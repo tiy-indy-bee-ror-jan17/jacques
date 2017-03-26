@@ -87,6 +87,7 @@ class ExplorerTest < ActionDispatch::IntegrationTest
 
   def example_note(note)
     {
+      "id"          => note.id,
       "title"       => note.title,
       "body"        => note.body,
       "created_at"  => note.created_at.to_formatted_s(:iso8601),
