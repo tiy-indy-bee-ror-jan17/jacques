@@ -5,6 +5,8 @@ class Note < ApplicationRecord
 
   validates :title, :body, presence: true
 
+  default_scope { order('created_at desc')}
+
   # def tags=(string)
   #   if string.is_a? String
   #     string.split(",").map(&:strip).each do |t|
