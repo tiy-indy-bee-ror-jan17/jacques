@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
 
-  # root to: redirect('https://davegregg.github.io/jacques-frontend/')
-  root to: redirect('http://localhost:8000/')
+  root to: redirect(
+    Rails.env.production? ? 'https://davegregg.github.io/jacques-frontend/' : 'http://localhost:8000/'
+  )
 
   scope '/api' do
     resources :users, only: [:create]
