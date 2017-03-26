@@ -28,7 +28,7 @@ class NoteController < ApplicationController
   private
 
   def note_params
-    pre_tags = params.permit(:title, :body, :tags, :username, :user)
+    pre_tags = params.permit(:title, :body, :tags, :user)
     tags = []
     pre_tags[:tags].split(/\s*,\s*/).each do |name|
       tags << Tag.find_or_create_by!(name: name)
