@@ -16,6 +16,8 @@ gem 'bcrypt', '~> 3.1.7'
 # We want serializers, killer.
 gem 'active_model_serializers', github: 'rails-api/active_model_serializers'
 
+gem 'faker', github: 'stympy/faker'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
@@ -27,7 +29,6 @@ group :development, :test do
   gem 'byebug'
   gem 'shoulda'
   gem 'factory_girl_rails', '~> 4.0'
-  gem 'faker', github: 'stympy/faker'
   gem 'pry-rails'
   gem 'pry-nav'
   gem 'database_cleaner'
