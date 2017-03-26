@@ -26,9 +26,12 @@ end
       created_at: rand_time(user.created_at).to_formatted_s(:long_ordinal)
     )
     5.times do
-      note.tags << Tag.find_or_create_by(
-        name: Faker::Hacker.verb
-      )
+      tag_name = Faker::Hacker.verb
+      unless note.tags.include? tag_name
+        note.tags << Tag.find_or_create_by(
+          name: tag_name
+        )
+      end
     end
   end
 end
