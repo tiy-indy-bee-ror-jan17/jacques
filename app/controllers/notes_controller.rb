@@ -31,7 +31,7 @@ class NotesController < ApplicationController
   private
 
   def note_params
-    # params[:user_id] = User.find_by(api_token: params[:api_token]).id
+    params[:user_id] = User.find_by(api_token: params[:api_token]).id
 
     pre_note_params = params.permit(:title,
                              :body,
