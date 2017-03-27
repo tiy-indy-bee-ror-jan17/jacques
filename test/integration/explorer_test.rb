@@ -77,6 +77,7 @@ class ExplorerTest < ActionDispatch::IntegrationTest
       }
     assert response.ok?
     json = JSON.parse(response.body)
+    # binding.pry
     assert_equal user.notes.count, json["notes"].length
     assert json["notes"].detect{|note| note == example_note(user.notes.last)}
   end
@@ -86,6 +87,7 @@ class ExplorerTest < ActionDispatch::IntegrationTest
 
   def example_note(note)
     {
+      "id"          => note.id,
       "title"       => note.title,
       "body"        => note.body,
       "created_at"  => note.created_at.to_formatted_s(:iso8601),
