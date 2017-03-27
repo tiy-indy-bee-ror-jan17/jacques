@@ -10,13 +10,19 @@ class NotesController < ApplicationController
   end
 
   def create
-    @note = Note.new(note_params)
-    if @note.save
-      render json: @note
-    else
-      error = @note.errors.full_messages.collect do |error_message|
-        {:error => error_message}
+    if current_user
+      @note = Note.new(note_params)
+      if @note.save
+        render json: @note
+      else
+        error = @note.errors.full_messages.collect do |error_message|
+          {:error => error_message}
+        end
+        @errors = {:errors => error}
+        render json: @errors, status: 400
       end
+    else
+      render json: {:error => "need to be logged in"}
       @errors = {:errors => error}
       render json: @errors, status: 400
     end
@@ -25,6 +31,8 @@ class NotesController < ApplicationController
   private
 
   def note_params
+    params[:user_id] = User.find_by(api_token: params[:api_token]).id
+
     pre_note_params = params.permit(:title,
                              :body,
                              :tags,
