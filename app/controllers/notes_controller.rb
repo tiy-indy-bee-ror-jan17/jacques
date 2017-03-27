@@ -6,8 +6,12 @@ class NotesController < ApplicationController
     render json: notes
   end
 
+  def show
+    render json: Note.find(params[:id])
+  end
+
   def create
-    note = Note.new(with_tags_converted)
+    note = Note.new(with_tags_converted) unless with_tags_converted[:user].blank?
     if note.save
       render json: note
     else
@@ -23,13 +27,15 @@ class NotesController < ApplicationController
     pre_note = params.permit(:title,
                              :body,
                              :tags,
-                             :user)
+                             :user,
+                             :api_token)
     tags = []
     pre_note[:tags].split(/\s*,\s*/).each do |name|
       tags << Tag.find_or_initialize_by(name: name)
     end
     pre_note[:tags] = tags
-    return pre_note
+    pre_note[:user] = User.find_by(api_token: pre_note[:api_token])
+    return pre_note.except(:api_token)
   end
 
 end

@@ -6,8 +6,9 @@ Rails.application.routes.draw do
 
   scope '/api' do
     resources :users, only: [:create]
-    resources :notes, only: [:create, :index]
-    get '/notes/tag/:name' => 'tags#show'
+    resources :notes, only: [:create, :index, :show]
+    get  '/notes/tag/:name' => 'tags#show'
+    post '/login'           => 'users#login'
   end
 
 end
