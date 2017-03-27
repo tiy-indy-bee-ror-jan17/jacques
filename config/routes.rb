@@ -7,5 +7,7 @@ Rails.application.routes.draw do
   post '/api/users' => 'users#create'
   put '/api/notes/:id' => 'notes#update'
   get '/' => 'notes#welcome'
+  get '/api/users/notes' => 'users#notes'
+  post '/api/login' => 'sessions#create'
 
 end

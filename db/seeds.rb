@@ -16,11 +16,10 @@
     end
 end
 
+@tag_collection = FactoryGirl.create_list(:tag, 20)
+
 notes = Note.all
 notes.each do |note|
-  rand(1..3).times.each do
-    tags = FactoryGirl.create(:tag)
-    note.tags << tags
-  end
-
+  tags = @tag_collection.sample(rand(2..5))
+  note.tags << tags
 end

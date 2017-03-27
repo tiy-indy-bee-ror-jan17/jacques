@@ -9,11 +9,19 @@ class UsersController < ApplicationController
     end
   end
 
+  def show
+    render json: current_user
+  end
+
+  def notes
+    render json: current_user.notes
+  end
+
 
   private
 
   def user_params
-    params.permit(:username, :email, :bio, :api_token, :password)
+    params.permit(:username, :email, :password)
   end
 
 end

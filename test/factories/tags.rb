@@ -1,5 +1,5 @@
 FactoryGirl.define do
   factory :tag do
-    name { Faker::Company.buzzword.gsub(%r(\s), "_") }
+    name { Faker::Company.unique.buzzword.gsub(%r(\s), "_") }
   end
 end
