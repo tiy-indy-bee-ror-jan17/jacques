@@ -7,3 +7,5 @@ To get started:
 - `rails db:create`
 - Generate away. Of note: Don't overwrite any test or factory files (it should prompt you as you go along)
   - If you goof this up, you can always `git checkout -- <filename>` to get back what was there before it was overwritten.
+
+[![Build Status](https://travis-ci.org/lmoore154/jacques.svg?branch=master)](https://travis-ci.org/lmoore154/jacques)
