@@ -116,12 +116,13 @@ class ExplorerTest < ActionDispatch::IntegrationTest
 
   def example_note(note)
     {
-      "title"       => note.title,
-      "body"        => note.body,
-      "created_at"  => note.created_at.to_formatted_s(:iso8601),
-      "updated_at"  => note.updated_at.to_formatted_s(:iso8601),
-      "tags"        => note.tags.map { |t| {"name" => t.name} },
-      "user"        => note.user ? {"username" => note.user.username} : nil
+      "title"           => note.title,
+      "body"            => note.body,
+      "formatted_body"  => Kramdown::Document.new(note.body).to_html,
+      "created_at"      => note.created_at.to_formatted_s(:iso8601),
+      "updated_at"      => note.updated_at.to_formatted_s(:iso8601),
+      "tags"            => note.tags.map { |t| {"name" => t.name} },
+      "user"            => note.user ? {"username" => note.user.username} : nil
     }
   end
 

@@ -19,6 +19,12 @@ gem 'faker'
 gem 'ransack'
 gem 'pg_search'
 gem 'rails_admin', '1.1.0'
+gem 'stripe'
+gem 'figaro'
+gem 'kramdown'
+gem 'paper_trail'
+gem 'kaminari'
+
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

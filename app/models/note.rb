@@ -4,7 +4,11 @@ class Note < ApplicationRecord
   has_many :taggings
   has_many :tags, through: :taggings
 
+  has_paper_trail
+
   validates :title, :body, presence: true
+
+  default_scope { order(created_at: :desc) }
 
   pg_search_scope :search_title_and_body, :against => [:title, :body]
 

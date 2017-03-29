@@ -10,7 +10,8 @@ class NotesController < ApplicationController
     if params[:search]
       @notes = @notes.search_title_and_body(params[:search])
     end
-    render json: @notes
+    @notes = @notes.page(params[:page])
+    render json: @notes, meta: pagination_dict(@notes)
   end
 
   def create
