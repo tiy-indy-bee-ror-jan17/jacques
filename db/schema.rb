@@ -1,4 +1,3 @@
-# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -11,9 +10,63 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 20170329153622) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "notes", force: :cascade do |t|
+    t.string   "title"
+    t.text     "body"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_notes_on_user_id", using: :btree
+  end
+
+  create_table "taggings", force: :cascade do |t|
+    t.integer  "tag_id"
+    t.integer  "note_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string   "username"
+    t.string   "email"
+    t.string   "password_digest"
+    t.string   "api_token"
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+    t.boolean  "admin",           default: false
+  end
+
+  create_table "version_associations", force: :cascade do |t|
+    t.integer "version_id"
+    t.string  "foreign_key_name", null: false
+    t.integer "foreign_key_id"
+    t.index ["foreign_key_name", "foreign_key_id"], name: "index_version_associations_on_foreign_key", using: :btree
+    t.index ["version_id"], name: "index_version_associations_on_version_id", using: :btree
+  end
+
+  create_table "versions", force: :cascade do |t|
+    t.string   "item_type",      null: false
+    t.integer  "item_id",        null: false
+    t.string   "event",          null: false
+    t.string   "whodunnit"
+    t.text     "object"
+    t.datetime "created_at"
+    t.text     "object_changes"
+    t.integer  "transaction_id"
+    t.index ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id", using: :btree
+    t.index ["transaction_id"], name: "index_versions_on_transaction_id", using: :btree
+  end
+
+  add_foreign_key "notes", "users"
 end

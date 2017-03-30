@@ -81,17 +81,48 @@ class ExplorerTest < ActionDispatch::IntegrationTest
     assert json["notes"].detect{|note| note == example_note(user.notes.last)}
   end
 
+  def test_arbitrary_filtering
+    note = Note.first
+    get "/api/notes?q[tags_name_eq]=" + note.tags.first.name
+    # q[body_cont]="beard oil"
+    assert response.ok?
+    json = JSON.parse(response.body)
+    assert_equal note.taggings.count, note.tags.count
+    assert_equal 1, Tag.where(name: note.tags.first.name).count
+    assert_equal note.tags.first.notes.count, json["notes"].length
+    assert json["notes"].detect{|notie| notie == example_note(note)}
+  end
+
+  def test_arbitrary_searching
+    note = Note.first
+    get "/api/notes?search=" + note.title.split[0]
+    assert response.ok?
+    json = JSON.parse(response.body)
+    refute_equal 10, json["notes"].length
+    assert json["notes"].detect{|notie| notie == example_note(note)}
+  end
+
+  def test_search_and_filter
+    note = Note.first
+    get "/api/notes?q[tags_name_eq]=#{note.tags.first.name}&search=#{note.title.split[1]}"
+    assert response.ok?
+    json = JSON.parse(response.body)
+    refute_equal 10, json["notes"].length
+    assert json["notes"].detect{|notie| notie == example_note(note)}
+  end
+
 
   private
 
   def example_note(note)
     {
-      "title"       => note.title,
-      "body"        => note.body,
-      "created_at"  => note.created_at.to_formatted_s(:iso8601),
-      "updated_at"  => note.updated_at.to_formatted_s(:iso8601),
-      "tags"        => note.tags.map { |t| {"name" => t.name} },
-      "user"        => note.user ? {"username" => note.user.username} : nil
+      "title"           => note.title,
+      "body"            => note.body,
+      "formatted_body"  => Kramdown::Document.new(note.body).to_html,
+      "created_at"      => note.created_at.to_formatted_s(:iso8601),
+      "updated_at"      => note.updated_at.to_formatted_s(:iso8601),
+      "tags"            => note.tags.map { |t| {"name" => t.name} },
+      "user"            => note.user ? {"username" => note.user.username} : nil
     }
   end
 
