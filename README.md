@@ -1,24 +1,9 @@
-## README
+## Jacques
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+To get started:
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+- Add [ActiveModel Serializers](https://github.com/rails-api/active_model_serializers) to the Gemfile
+- `bundle`
+- `rails db:create`
+- Generate away. Of note: Don't overwrite any test or factory files (it should prompt you as you go along)
+  - If you goof this up, you can always `git checkout -- <filename>` to get back what was there before it was overwritten.
