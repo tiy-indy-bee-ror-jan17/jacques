@@ -11,14 +11,14 @@ class NotesController < ApplicationController
       @notes = @notes.search_title_and_body(params[:search])
     end
     @notes = @notes.page(params[:page])
-    render json: @notes, meta: pagination_dict(@notes)
+    render json: @notes, meta: meta_dict(@notes)
   end
 
   def create
     @note = Note.new(note_params)
     if @note.save
       # Make tags
-      render json: @note
+      render json: @note, meta: meta_dict
     else
       render json: {errors: @note.errors.full_messages.map{|e| {error: e}}}, status: 400
     end

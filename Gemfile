@@ -24,6 +24,7 @@ gem 'figaro'
 gem 'kramdown'
 gem 'paper_trail'
 gem 'kaminari'
+gem 'sidekiq'
 
 
 # Use Capistrano for deployment

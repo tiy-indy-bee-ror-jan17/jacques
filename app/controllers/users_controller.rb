@@ -6,7 +6,7 @@ class UsersController < ApplicationController
       result = ChargeStripe.new(
                 @user,
                 params[:stripeToken],
-                500
+                5000
                ).charge_them
 
       if result[:success]
